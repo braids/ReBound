@@ -6,7 +6,9 @@ The [SDL2](https://www.libsdl.org/download-2.0.php), [SDL_ttf](https://www.libsd
 
 ## Controls
 Q - Move blue paddle up.
+
 A - Move blue paddle down.
 
 P - Move red paddle up.
+
 L - Move red paddle down.
