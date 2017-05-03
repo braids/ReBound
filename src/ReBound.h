@@ -7,8 +7,11 @@
 #define DESKTOP_AREA_W 854
 #define DESKTOP_AREA_H 480
 
+# ifndef _MSC_VER
+# define SDL_MAIN_HANDLED
+# endif
+
 #define SCORE_TEXT_BUFFER 10
-#define SDL_MAIN_HANDLED
 
 #include <cstdio>
 #include <SDL2/SDL.h>
