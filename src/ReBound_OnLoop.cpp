@@ -54,7 +54,5 @@ void ReBound::OnLoop() {
 		// Check for ball colliding with paddles.
 		GameBall->PaddleCollide(BluePaddle);
 		GameBall->PaddleCollide(RedPaddle);
-	}	
-	
-	
+	}
 }

@@ -98,4 +98,3 @@ void Paddle::MoveUpdate(float timeStep) {
 	if (posY > 395)
 		posY = 395;
 }
-

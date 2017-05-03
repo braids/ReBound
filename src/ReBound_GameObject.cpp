@@ -40,8 +40,3 @@ SDL_Rect* GameObject::GetDrawArea() {
 	// Return draw area
 	return DrawArea;
 }
-
-
-
-
-
