@@ -13,7 +13,7 @@ ReBound::ReBound() {
 }
 
 void ReBound::ScoreUpdate() {
-	sprintf_s(scoreOutput,
+	snprintf(scoreOutput,
 		sizeof(char) * SCORE_TEXT_BUFFER,
 		"%s%d-%d%s",
 		BluePaddle->Score < 10 ? " " : "", // If score is less than 10, add a spacer

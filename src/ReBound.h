@@ -8,11 +8,12 @@
 #define DESKTOP_AREA_H 480
 
 #define SCORE_TEXT_BUFFER 10
+#define SDL_MAIN_HANDLED
 
 #include <cstdio>
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "ReBound_GameObject.h"
 
 class ReBound {

@@ -28,7 +28,10 @@ bool ReBound::OnInit() {
 	// Initialize score
 	ScoreUpdate();
 	font = TTF_OpenFont("pongfont.ttf", 40);
-	textColor = { 255, 255, 255, 0 };
+	textColor.r = 255;
+	textColor.g = 255;
+	textColor.b = 255;
+	textColor.a = 0;
 	textSurface = TTF_RenderText_Solid(font, scoreOutput, textColor);
 	text = SDL_CreateTextureFromSurface(Renderer, textSurface);
 	textRenderQuad = new SDL_Rect();

@@ -1,7 +1,7 @@
 #ifndef _CAPP_GAMEOBJECT_H_
 #define _CAPP_GAMEOBJECT_H_
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 class GameObject {
 protected:
