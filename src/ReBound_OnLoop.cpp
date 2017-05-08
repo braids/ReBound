@@ -6,6 +6,9 @@ void ReBound::OnLoop() {
 	currTick = SDL_GetTicks();
 	float timeStep = currTick - lastTick;
 
+	if (Playing == false)
+		return;
+
 	// Update paddle movement
 	BluePaddle->MoveUpdate(timeStep);
 	RedPaddle->MoveUpdate(timeStep);
@@ -27,11 +30,7 @@ void ReBound::OnLoop() {
 		// If ball lands in Blue Paddle goal
 		if (GameBall->GetDrawArea()->x < 0) {
 			// Update Red Paddle score
-			RedPaddle->Score += 1;
-			ScoreUpdate();
-			textSurface = TTF_RenderText_Solid(font, scoreOutput, textColor);
-			text = SDL_CreateTextureFromSurface(Renderer, textSurface);
-			SDL_FreeSurface(textSurface);
+			ScoreUpdate(RedPaddle);
 			
 			// Reset ball to center
 			GameBall->Reset();
@@ -40,11 +39,7 @@ void ReBound::OnLoop() {
 		// If ball lands in Red Paddle goal
 		if (GameBall->GetDrawArea()->x >= 834) {
 			// Update Red Paddle score
-			BluePaddle->Score += 1;
-			ScoreUpdate();
-			textSurface = TTF_RenderText_Solid(font, scoreOutput, textColor);
-			text = SDL_CreateTextureFromSurface(Renderer, textSurface);
-			SDL_FreeSurface(textSurface);
+			ScoreUpdate(BluePaddle);
 			
 			// Reset ball to center
 			GameBall->Reset();

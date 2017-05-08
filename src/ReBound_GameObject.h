@@ -1,7 +1,7 @@
-#ifndef _CAPP_GAMEOBJECT_H_
-#define _CAPP_GAMEOBJECT_H_
+#ifndef _REBOUND_GAMEOBJECT_H_
+#define _REBOUND_GAMEOBJECT_H_
 
-#include <SDL2/SDL.h>
+#include "ReBound_Graphics.h"
 
 class GameObject {
 protected:
@@ -44,6 +44,7 @@ public:
 	void HandleEvent(SDL_Event* e);
 
 	void MoveUpdate(float timeStep);
+	void Reset();
 };
 
 class Ball : public GameObject {

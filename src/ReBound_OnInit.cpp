@@ -1,44 +1,32 @@
 #include "ReBound.h"
-
+#include "ReBound_AssetDefines.h"
 bool ReBound::OnInit() {
-	// SDL Initialization
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-		return false;
+	printf("Init\n");
+	
+	// Initialize graphics
+	mGraphics = Graphics::Instance();
 
-	// SDL_TTF Initialization
-	if (TTF_Init() < 0) 
-		return false;
+	// Initialize assets
+	mAssets = Assets::Instance();
 
-	// Create window
-	if ((Window = SDL_CreateWindow("ReBound", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DESKTOP_AREA_W, DESKTOP_AREA_H, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS)) == NULL)
-		return false;
+	// Load Logo
+	Logo = Assets::Instance()->GetTexture(IMAGE_LOGO);
 
-	// Create renderer
-	if ((Renderer = SDL_CreateRenderer(Window, -1, 0)) == NULL)
-		return false;
-
-	// Load BG texture
-	BG = LoadTexture("bg.png");
+	// Load BG
+	BG = Assets::Instance()->GetTexture(IMAGE_BACKGROUND);
 
 	// Create game objects
-	BluePaddle = new Paddle(1, LoadTexture("bluepaddle.png"));
-	RedPaddle = new Paddle(2, LoadTexture("redpaddle.png"));
-	GameBall = new Ball(LoadTexture("ball.png"));
+	BluePaddle = new Paddle(1, Assets::Instance()->GetTexture(IMAGE_BLUEPADDLE));
+	RedPaddle = new Paddle(2, Assets::Instance()->GetTexture(IMAGE_REDPADDLE));
+	GameBall = new Ball(Assets::Instance()->GetTexture(IMAGE_BALL));
+
+	// Init menu text
+	StartFont = Assets::Instance()->GetFont(FONT_PONGFONT, 80);
+	StartTexture = mGraphics->LoadText(StartFont, StartText, 255, 255, 255, 0);
 
 	// Initialize score
-	ScoreUpdate();
-	font = TTF_OpenFont("pongfont.ttf", 40);
-	textColor.r = 255;
-	textColor.g = 255;
-	textColor.b = 255;
-	textColor.a = 0;
-	textSurface = TTF_RenderText_Solid(font, scoreOutput, textColor);
-	text = SDL_CreateTextureFromSurface(Renderer, textSurface);
-	textRenderQuad = new SDL_Rect();
-	textRenderQuad->x = 427 - (textSurface->w / 2);
-	textRenderQuad->y = 30;
-	textRenderQuad->w = textSurface->w;
-	textRenderQuad->h = textSurface->h;
-
+	ScoreFont = Assets::Instance()->GetFont(FONT_PONGFONT, 40);
+	ScoreClear();
+	
 	return true;
 }

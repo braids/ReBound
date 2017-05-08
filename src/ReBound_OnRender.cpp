@@ -1,26 +1,23 @@
 #include "ReBound.h"
 
 void ReBound::OnRender() {
-	// Clear render buffer
-	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
-	SDL_RenderClear(Renderer);
-	
-	// Draw BG
-	SDL_RenderCopy(Renderer, BG, NULL, NULL);
-	// Draw score on BG
-	SDL_RenderCopy(Renderer, text, NULL, textRenderQuad);	
-	// Draw game objects
-	RenderGameObjects();
+	mGraphics->ClearBackBuffer();
 
-	// Scale screen to desktop resolution
-	SDL_RenderSetScale(Renderer, DScaleXRatio(), DScaleYRatio());
+	if (Playing) {
+		mGraphics->DrawTexture(BG);
+		mGraphics->DrawTexture(ScoreTexture, Graphics::CenterTextureRectX(ScoreTexture, 30));
+		RenderGameObjects();
+	}
+	else {
+		mGraphics->DrawTexture(Logo, Graphics::CenterTextureRectX(Logo, 10));
+		mGraphics->DrawTexture(StartTexture, Graphics::CenterTextureRectX(StartTexture, 350));
+	}
 
-	// Draw render buffer to screen
-	SDL_RenderPresent(Renderer);
+	mGraphics->Render();
 }
 
 void ReBound::RenderGameObjects() {
-	SDL_RenderCopy(Renderer, GameBall->GetTexture(), NULL, GameBall->GetDrawArea());
-	SDL_RenderCopy(Renderer, BluePaddle->GetTexture(), NULL, BluePaddle->GetDrawArea());
-	SDL_RenderCopy(Renderer, RedPaddle->GetTexture(), NULL, RedPaddle->GetDrawArea());
+	mGraphics->DrawTexture(GameBall->GetTexture(), GameBall->GetDrawArea());
+	mGraphics->DrawTexture(BluePaddle->GetTexture(), BluePaddle->GetDrawArea());
+	mGraphics->DrawTexture(RedPaddle->GetTexture(), RedPaddle->GetDrawArea());
 }

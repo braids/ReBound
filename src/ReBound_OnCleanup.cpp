@@ -1,6 +1,9 @@
 #include "ReBound.h"
 
 void ReBound::OnCleanup() {
-	SDL_Quit();
-	TTF_Quit();
+	Graphics::Release();
+	mGraphics = NULL;
+
+	Assets::Release();
+	mAssets = NULL;
 }
